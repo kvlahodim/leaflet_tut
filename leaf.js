@@ -1,5 +1,6 @@
 var map = L.map('map').setView([51.505, -0.09], 13);
 
+/*
 L.tileLayer('https://api.mapbox.com/styles/v1/{id}/tiles/{z}/{x}/{y}?access_token={accessToken}', {
     attribution: 'Map data &copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors, Imagery © <a href="https://www.mapbox.com/">Mapbox</a>',
     maxZoom: 18,
@@ -7,6 +8,11 @@ L.tileLayer('https://api.mapbox.com/styles/v1/{id}/tiles/{z}/{x}/{y}?access_toke
     tileSize: 512,
     zoomOffset: -1,
     accessToken: 'pk.eyJ1Ijoia3ZsYWhvZGltIiwiYSI6ImNsMzFmMjc2NjAwdGUzanA1aHBqeXhsaXUifQ.ZId9Kj1c5sGKSw8p3PC9Qw'
+}).addTo(map);
+*/
+
+L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
+    attribution: '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
 }).addTo(map);
 
 var marker = L.marker([51.5, -0.09]).addTo(map);
@@ -23,3 +29,13 @@ var polygon = L.polygon([
     [51.503, -0.06],
     [51.51, -0.047]
 ]).addTo(map);
+
+marker.bindPopup("<b>Hello world!</b><br>I am a popup.").openPopup();
+circle.bindPopup("I am a circle.");
+polygon.bindPopup("I am a polygon.");
+
+function onMapClick(e) {
+    alert("You clicked the map at " + e.latlng);
+}
+
+map.on('click', onMapClick);
